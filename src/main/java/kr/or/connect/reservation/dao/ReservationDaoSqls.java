@@ -20,5 +20,6 @@ public class ReservationDaoSqls {
 	public static final String PRODUCT_COUNT = "select count(*) from display_info d inner join product p on d.product_id = p.id "
 			+ "inner join category c on p.category_id = c.id";
 	
-	
+	public static final String SELECT_PROMOTION = "";
+	public static final String PROMOTION_COUNT = "";
 }
