@@ -13,7 +13,10 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
+import kr.or.connect.reservation.dto.DisplayInfoImage;
 import kr.or.connect.reservation.dto.Product;
+import kr.or.connect.reservation.dto.ProductImage;
+import kr.or.connect.reservation.dto.ProductPrice;
 
 import static kr.or.connect.reservation.dao.ReservationDaoSqls.*;
 
@@ -22,6 +25,9 @@ public class ProductDao {
 	private NamedParameterJdbcTemplate jdbc;
 	private SimpleJdbcInsert insertAction;
 	private RowMapper<Product> rowMapper = BeanPropertyRowMapper.newInstance(Product.class);
+	private RowMapper<ProductImage> rowMapper_PI = BeanPropertyRowMapper.newInstance(ProductImage.class);
+	private RowMapper<DisplayInfoImage> rowMapper_DI = BeanPropertyRowMapper.newInstance(DisplayInfoImage.class);
+	private RowMapper<ProductPrice> rowMapper_PP = BeanPropertyRowMapper.newInstance(ProductPrice.class);
 	
 	public ProductDao(DataSource dataSource) {
 		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
@@ -49,5 +55,34 @@ public class ProductDao {
 	public int ProductCategoryCount(Integer id) {
 		Map<String, ?> params = Collections.singletonMap("categoryId", id);
 		return jdbc.queryForObject(TOTAL_COUNT_BY_CATEGORY, params, Integer.class);
+	}
+	
+	public List<Product> selectEachProduct(Integer id) {
+		Map<String, Integer> params = new HashMap<>();
+		params.put("id", id);
+		return jdbc.query(SELECT_DISPLAY_INFO, params, rowMapper);
+	}
+	
+	public List<ProductImage> selectProductImage(Integer id) {
+		Map<String, Integer> params = new HashMap<>();
+		params.put("id", id);
+		return jdbc.query(SELECT_PRODUCT_IMG, params, rowMapper_PI);
+	}
+	
+	public List<DisplayInfoImage> selectDisplayInfoImage(Integer id) {
+		Map<String, Integer> params = new HashMap<>();
+		params.put("id", id);
+		return jdbc.query(SELECT_DISPLAY_INFO_IMG, params, rowMapper_DI);
+	}
+	
+	public List<ProductPrice> selectProductPrice(Integer id) {
+		Map<String, Integer> params = new HashMap<>();
+		params.put("id", id);
+		return jdbc.query(SELECT_PRODUCTPRICES, params, rowMapper_PP);
+	}
+	
+	public int AvgScore(Integer id) {
+		Map<String, ?> params = Collections.singletonMap("id", id);
+		return jdbc.queryForObject(AVGSCORE, params, Integer.class);
 	}
 }

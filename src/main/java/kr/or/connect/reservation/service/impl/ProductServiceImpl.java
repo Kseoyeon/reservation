@@ -7,7 +7,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.connect.reservation.dao.ProductDao;
+import kr.or.connect.reservation.dto.DisplayInfoImage;
 import kr.or.connect.reservation.dto.Product;
+import kr.or.connect.reservation.dto.ProductImage;
+import kr.or.connect.reservation.dto.ProductPrice;
 import kr.or.connect.reservation.service.ProductService;
 
 @Service
@@ -30,6 +33,34 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
+	@Transactional
+	public List<Product> getEachProduct(Integer id) {
+		List<Product> list = productDao.selectEachProduct(id);
+		return list;
+	}
+	
+	@Override
+	@Transactional
+	public List<ProductImage> getProductImage(Integer id) {
+		List<ProductImage> list = productDao.selectProductImage(id);
+		return list;
+	}
+	
+	@Override
+	@Transactional
+	public List<DisplayInfoImage> getDisplayInfoImage(Integer id) {
+		List<DisplayInfoImage> list = productDao.selectDisplayInfoImage(id);
+		return list;
+	}
+	
+	@Override
+	@Transactional
+	public List<ProductPrice> getProductPrice(Integer id) {
+		List<ProductPrice> list = productDao.selectProductPrice(id);
+		return list;
+	}
+	
+	@Override
 	public int getProductCount(Integer id) {
 		return productDao.ProductCategoryCount(id);
 	}
@@ -37,5 +68,10 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public int getAllProductCount() {
 		return productDao.ProductAllCount();
+	}
+	
+	@Override
+	public int getAvgScore(Integer id) {
+		return productDao.AvgScore(id);
 	}
 }

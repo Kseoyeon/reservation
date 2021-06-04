@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import kr.or.connect.reservation.dto.DisplayInfoImage;
 import kr.or.connect.reservation.dto.Product;
+import kr.or.connect.reservation.dto.ProductImage;
+import kr.or.connect.reservation.dto.ProductPrice;
 import kr.or.connect.reservation.service.ProductService;
 
 @RestController
@@ -46,6 +49,24 @@ public class ProductApiController {
 		map.put("totalcount", totalCount);
 		map.put("count", count);
 		map.put("products", categoryList);
+		return map;
+	}
+	
+	@GetMapping("/displayinfos/{displayId}")
+	public Map<String, Object> displayList(@PathVariable(name="displayId")Integer id) {
+		List<Product> productList = productService.getEachProduct(id);
+		List<ProductImage> productImageList = productService.getProductImage(id);
+		List<DisplayInfoImage> displayInfoImageList = productService.getDisplayInfoImage(id);
+		List<ProductPrice> productPriceList = productService.getProductPrice(id);
+		
+		int avgScore = productService.getAvgScore(id);
+		
+		Map<String,Object> map = new HashMap<>();
+		map.put("product", productList);
+		map.put("productImages", productImageList);
+		map.put("displayInfoImages", displayInfoImageList);
+		map.put("avgScore", avgScore);
+		map.put("productPrices", productPriceList);
 		return map;
 	}
 }
