@@ -2,6 +2,8 @@ package kr.or.connect.reservation.dto;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class ProductImage {
 	private int productId;
 	private int productImageId;
@@ -62,12 +64,14 @@ public class ProductImage {
 	public void setDeleteFlag(int deleteFlag) {
 		this.deleteFlag = deleteFlag;
 	}
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	public Date getCreateDate() {
 		return createDate;
 	}
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
 	}
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	public Date getModifyDate() {
 		return modifyDate;
 	}
