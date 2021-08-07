@@ -2,7 +2,6 @@ package kr.or.connect.reservation.service.impl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,9 +10,13 @@ import kr.or.connect.reservation.dto.Comment;
 import kr.or.connect.reservation.service.CommentService;
 
 @Service
-public class CommentServiceImpl implements CommentService {
-	@Autowired
-	CommentDao commentDao;
+public class CommentServiceImpl implements CommentService {	
+	
+	private final CommentDao commentDao;
+	
+	public CommentServiceImpl(CommentDao commentDao) {
+		this.commentDao = commentDao;
+	}
 	
 	@Override
 	@Transactional
