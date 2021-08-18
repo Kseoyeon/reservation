@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.or.connect.reservation.dto.Comment;
 
-import static kr.or.connect.reservation.dao.ReservationDaoSqls.*;
+import static kr.or.connect.reservation.dao.CommentDaoSqls.*;
 
 @Repository
 public class CommentDao {

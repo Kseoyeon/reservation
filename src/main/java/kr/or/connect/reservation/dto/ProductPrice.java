@@ -5,7 +5,7 @@ import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class ProductPrice {
-	private int id;
+	private int productPriceId;
 	private int productId;
 	private String priceTypeName;
 	private int price;
@@ -13,11 +13,11 @@ public class ProductPrice {
 	private Date createDate;
 	private Date modifyDate;
 	
-	public int getId() {
-		return id;
+	public int getProductPriceId() {
+		return productPriceId;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setProductPriceId(int productPriceId) {
+		this.productPriceId = productPriceId;
 	}
 	public int getProductId() {
 		return productId;
@@ -57,12 +57,10 @@ public class ProductPrice {
 	public void setModifyDate(Date modifyDate) {
 		this.modifyDate = modifyDate;
 	}
-	
 	@Override
 	public String toString() {
-		return "ProductPrice [id=" + id + ", productId=" + productId + ", priceTypeName=" + priceTypeName + ", price="
-				+ price + ", discountRate=" + discountRate + ", createDate=" + createDate + ", modifyDate=" + modifyDate
-				+ "]";
+		return "ProductPrice [productPriceId=" + productPriceId + ", productId=" + productId + ", priceTypeName="
+				+ priceTypeName + ", price=" + price + ", discountRate=" + discountRate + ", createDate=" + createDate
+				+ ", modifyDate=" + modifyDate + "]";
 	}
-
 }

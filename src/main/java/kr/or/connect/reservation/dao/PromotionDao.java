@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.or.connect.reservation.dto.Promotion;
 
-import static kr.or.connect.reservation.dao.ReservationDaoSqls.*;
+import static kr.or.connect.reservation.dao.PromotionDaoSqls.*;
 
 @Repository
 public class PromotionDao {

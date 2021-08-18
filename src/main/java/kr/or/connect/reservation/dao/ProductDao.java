@@ -18,7 +18,7 @@ import kr.or.connect.reservation.dto.Product;
 import kr.or.connect.reservation.dto.ProductImage;
 import kr.or.connect.reservation.dto.ProductPrice;
 
-import static kr.or.connect.reservation.dao.ReservationDaoSqls.*;
+import static kr.or.connect.reservation.dao.ProductDaoSqls.*;
 
 @Repository
 public class ProductDao {
